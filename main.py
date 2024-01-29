@@ -126,7 +126,7 @@ api.add_resource(TestImageAnalyzer, '/analyze_test')
 
 @app.route('/')
 def home():
-    return "Witaj w aplikacji Flask! Jeżeli widzisz tę stronę, wszystko działa"
+    return "Witaj. Przetestuj API uruchamiając załączony w repozytorium plik index.html"
 
 
 # Uruchamianie aplikacji
