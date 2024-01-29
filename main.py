@@ -118,7 +118,7 @@ api.add_resource(TestImageAnalyzer, '/analyze_test')
 # Definiowanie głównej trasy
 @app.route('/')
 def home():
-    return "Witaj w aplikacji Flask!"
+    return "Witaj w aplikacji Flask! Jeżeli widzisz tę stronę, wszystko działa"
 
 # Uruchamianie aplikacji
 if __name__ == '__main__':
