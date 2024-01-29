@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Analiza Obrazu</title>
+    <script>
+        function sendImageToAPI(formData, url) {
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('originalImage').src = 'data:image/jpeg;base64,' + data.original_image;
+                    document.getElementById('processedImage').src = 'data:image/jpeg;base64,' + data.processed_image;
+                    document.getElementById('faceCount').innerText = 'Liczba osób wykrytych na zdjęciu: ' + data.face_count;
+                }
+            })
+            .catch(error => console.error('Błąd:', error));
+        }
+
+        function analyzeTestImage() {
+            fetch('http://127.0.0.1:5000/analyze_test')
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    document.getElementById('originalImage').src = 'data:image/jpeg;base64,' + data.original_image;
+                    document.getElementById('processedImage').src = 'data:image/jpeg;base64,' + data.processed_image;
+                    document.getElementById('faceCount').innerText = 'Liczba osób wykrytych na zdjęciu: ' + data.face_count;
+                }
+            })
+            .catch(error => console.error('Błąd:', error));
+        }
+
+        window.onload = function() {
+            document.getElementById('uploadForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                sendImageToAPI(formData, 'http://127.0.0.1:5000/analyze_upload');
+            });
+
+            document.getElementById('urlForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData();
+                formData.append('image_url', document.getElementById('image_url').value);
+                sendImageToAPI(formData, 'http://127.0.0.1:5000/analyze_url');
+            });
+
+            document.getElementById('testImageForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                analyzeTestImage();
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>PhotoPeopleCounter - wersja API </h1>
+    <h4>Aplikacja do Wykrywania i Liczenia Osób na Zdjęciach</h4>
+    <p class="info-text">
+    Aplikacja, opracowana w języku Python i bazująca na klasyfikatorze kaskadowym Haar z biblioteki OpenCV, umożliwia identyfikację twarzy i zliczanie osób na zdjęciach. Strona wykorzystuje API, które umożliwia przesyłanie obrazów na trzy różne sposoby:
+    </p>
+    <ul class="info-list">
+        <li>
+            <strong>Analiza obrazu testowego (/analyze_test):</strong> Użytkownicy mogą skorzystać z tej opcji, aby przetestować działanie aplikacji bez konieczności przesyłania własnych zdjęć. Aplikacja używa zdefiniowanego obrazu testowego, przetwarza go i dostarcza wyniki, w tym zliczoną liczbę osób na podstawie wykrytych twarzy.
+        </li>
+        <li>
+            <strong>Przesyłanie obrazów (/analyze_upload):</strong> Użytkownicy mogą przesłać własne zdjęcia bezpośrednio przez stronę. Po przesłaniu zdjęcia, aplikacja przeprowadza analizę, identyfikuje twarze i zwraca zliczoną liczbę osób, a także obraz z zaznaczonymi twarzami i obraz oryginalny.
+        </li>
+        <li>
+             <strong>Analiza obrazów z URL (/analyze_url):</strong> Użytkownicy mogą również podać URL obrazu, który chcą przeanalizować. Aplikacja pobiera obraz z podanego adresu, przetwarza go i dostarcza takie same informacje, jak w przypadku przesyłania obrazów - zliczoną liczbę osób, obraz z zaznaczonymi twarzami oraz obraz oryginalny.
+        </li>
+    </ul>
+
+    <form id="testImageForm">
+        <input type="submit" value="Analizuj obraz testowy">
+    </form>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Analizuj wczytany obraz">
+    </form>
+
+    <form id="urlForm">
+        <input type="text" id="image_url" class="input-url" placeholder="Wpisz adres URL obrazu">
+        <input type="submit" value="Analizuj obraz z URL">
+    </form>
+
+    <div class="image-section">
+        <h2>Twój obraz przed analizą</h2>
+        <img id="originalImage" alt="Twój oryginalny obraz">
+        <h2>Twój obraz po analizie</h2>
+        <img id="processedImage" alt="Twój przetworzony obraz">
+        <h2 class="custom-background"><span id="faceCount"></span></h2>
+    </div>
+</div>
+</body>
+</html>

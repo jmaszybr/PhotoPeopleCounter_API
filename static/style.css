@@ -1,0 +1,186 @@
+/* Styl główny */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e0e0; /* Jednolite szare tło dla całej strony */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Stylizacja akapitu */
+p.info-text {
+    font-size: 0.8em;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 1em;
+    font-style: italic;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul.info-list {
+    font-size: 0.8em;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 1em;
+    font-style: italic;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none; /* Usunięcie domyślnych znaczników listy */
+    padding-left: 0; /* Usunięcie domyślnego wcięcia listy */
+}
+
+ul.info-list li {
+    margin-bottom: 0.5em; /* Dodanie odstępu między elementami listy */
+}
+
+ul.info-list li strong {
+    color: #333; /* Ciemniejszy kolor dla wyróżnionego tekstu */
+    font-style: normal; /* Usunięcie kursywy dla wyróżnionego tekstu */
+}
+
+
+/* Kontener główny */
+.container {
+    width: 80%;
+    max-width: 800px; /* Ograniczenie maksymalnej szerokości */
+    margin: 40px auto; /* Centralne wyrównanie z marginesem górnym i dolnym */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtelny cień */
+}
+
+/* Nagłówek */
+header {
+    background: #50b3a2;
+    color: white;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: 3px solid #e8491d;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+header li {
+    float: left;
+    padding: 0 20px;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header .highlight, header .current a {
+    color: #e8491d;
+    font-weight: bold;
+}
+
+header a:hover {
+    font-weight: bold;
+}
+
+/* Sekcja obrazów */
+.image-section {
+    margin: 20px 0;
+}
+
+.image-section img {
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    display: block;
+    margin: auto; /* Centrowanie obrazu */
+}
+
+.image-section h2, .image-section h2.custom-background {
+    margin-top: 20px;
+    background-color: #f0f0f0; /* Domyślne tło */
+    color: #333;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.image-section h2.custom-background {
+    background-color: #e0f0e0; /* Alternatywne tło */
+}
+
+/* Zielone tło */
+.green-background {
+    background-color: #b0e57c;
+    color: #333;
+}
+
+/* Stopka */
+footer {
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    background-color: #e8491d;
+    text-align: center;
+}
+
+/* Formularz i elementy wejściowe */
+input[type="file"],
+input[type="submit"],
+.input-url {
+    width: 70%; /* Spójna szerokość dla elementów formularza */
+    padding: 8px 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    appearance: button;
+    background: #50b3a2;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #429587;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsywność - Media Queries (opcjonalnie) */
+@media (max-width: 600px) {
+    .container, header li, .input-url, input[type="submit"] {
+        width: 100%;
+    }
+}
