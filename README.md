@@ -29,7 +29,16 @@ Endpoint: `/analyze_url`
 - Zapewnia również obraz z zaznaczonymi twarzami i obraz oryginalny.
 
 ## Wymagania
-- Python 3.x
-- OpenCV
+
+Aby uruchomić projekt, wymagane jest zainstalowanie kilku bibliotek i narzędzi. Możesz je zainstalować używając narzędzia `pip`. Oto wymagane biblioteki:
+
+- Flask: Framework webowy, który jest używany do tworzenia aplikacji internetowych.
+- flask_restful: Rozszerzenie Flask, które ułatwia tworzenie interfejsów API RESTful.
+- OpenCV (cv2): Biblioteka do przetwarzania obrazów, wykorzystywana do analizy i przetwarzania obrazów.
+- NumPy: Biblioteka do obliczeń naukowych w Pythonie, która jest używana w przetwarzaniu obrazów.
+- io: Moduł Pythona służący do operacji na strumieniach danych.
+- base64: Moduł Pythona do kodowania i dekodowania danych w formacie base64.
+- requests: Biblioteka Pythona do wykonywania zapytań HTTP.
+- flask_cors: Rozszerzenie Flask do obsługi Cross-Origin Resource Sharing (CORS).
 
 
