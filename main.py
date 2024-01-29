@@ -13,8 +13,9 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
-# Funkcja do wykrywania twarzy na obrazie
+
 def detect_faces(image):
+    # Funkcja do wykrywania twarzy na obrazie
     # Konwersja obrazu na skalę szarości
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # Inicjalizacja klasyfikatora twarzy
@@ -27,14 +28,16 @@ def detect_faces(image):
     # Zwracanie obrazu z zaznaczonymi twarzami i liczby wykrytych twarzy
     return image, len(faces)
 
-# Funkcja do kodowania obrazu do formatu base64
+
 def encode_image(image):
+    # Funkcja do kodowania obrazu do formatu base64
     _, buffer = cv2.imencode('.jpg', image)
     encoded_image = base64.b64encode(buffer).decode('utf-8')
     return encoded_image
 
-# Klasa do analizy obrazów przesłanych przez użytkownika
+
 class ImageUploadAnalyzer(Resource):
+    # Klasa do analizy obrazów przesłanych przez użytkownika
     def post(self):
         # Sprawdzanie, czy plik został przesłany
         if 'file' not in request.files:
@@ -59,8 +62,9 @@ class ImageUploadAnalyzer(Resource):
             'face_count': face_count
         }
 
-# Klasa do analizy obrazów z URL
+
 class ImageURLAnalyzer(Resource):
+    # Klasa do analizy obrazów z URL
     def post(self):
         # Sprawdzanie, czy URL obrazu został przesłany
         if 'image_url' not in request.form:
@@ -89,8 +93,9 @@ class ImageURLAnalyzer(Resource):
             'face_count': face_count
         }
 
-# Klasa do analizy obrazu testowego
+
 class TestImageAnalyzer(Resource):
+    # Klasa do analizy obrazu testowego
     def get(self):
         # Ścieżka do obrazu na serwerze
         image_path = 'images/test.png'
@@ -110,15 +115,19 @@ class TestImageAnalyzer(Resource):
             'face_count': face_count
         }
 
+
 # Dodawanie zasobów do API
 api.add_resource(ImageUploadAnalyzer, '/analyze_upload')
 api.add_resource(ImageURLAnalyzer, '/analyze_url')
 api.add_resource(TestImageAnalyzer, '/analyze_test')
 
 # Definiowanie głównej trasy
+
+
 @app.route('/')
 def home():
     return "Witaj w aplikacji Flask! Jeżeli widzisz tę stronę, wszystko działa"
+
 
 # Uruchamianie aplikacji
 if __name__ == '__main__':
