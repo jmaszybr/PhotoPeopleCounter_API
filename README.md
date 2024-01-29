@@ -41,4 +41,6 @@ Aby uruchomić projekt, wymagane jest zainstalowanie kilku bibliotek i narzędzi
 - requests: Biblioteka Pythona do wykonywania zapytań HTTP.
 - flask_cors: Rozszerzenie Flask do obsługi Cross-Origin Resource Sharing (CORS).
 
-
+## Jak Przetestować Aplikację
+Aby przetestować działanie aplikacji, możesz skorzystać z dołączonej strony HTML.
+Upewnij się, że serwer aplikacji działa pod właściwym adresem, który jest zdefiniowany w skrypcie strony HTML (http://127.0.0.1:5000). Jeśli twój serwer działa na innym adresie, będziesz musiał odpowiednio zaktualizować adres URL w skrypcie strony HTML.
